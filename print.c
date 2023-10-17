@@ -6,6 +6,7 @@
 int _format(char c, va_list arg);
 int _putchar(int c);
 int _putstr(char *str);
+int _putdigit(int x);
 /**
  * _printf - function that produces output according to a format.
  * @format: character string
@@ -63,13 +64,15 @@ int _format(char c, va_list arg)
 	}
 	else if (c == '%')
 	{
-	write(1, &c, 1);
-	counter++;
+		write(1, "%", 1);
+	}
+	else if (c == 'd' || 'i')
+	{
+	counter += _putdigit(va_arg(arg, int));
 	}
 	else
 	{
-	write(1, &c, 1);
-	counter++;
+	counter +=write(1, &c, 1);
 	}
 	return (counter);
 }
@@ -103,6 +106,42 @@ int _putstr(char *str)
 		_putchar((int)*str);
 		counter++;
 		str++;
+	}
+	return (counter);
+}
+
+/**
+ * _putdigit - prints a digit to stdout
+ * @x: digit to be printed
+ *
+ * Return: an integer
+ */
+int _putdigit(int x)
+{
+	int counter = 0;
+	int p = 1;
+	int temp;
+	int num;
+
+	if (x < 0)
+	{
+		write(1, "-", 1);
+		x = -x;
+		counter++;
+	}
+	temp = x;
+	while (temp >= 10)
+	{
+		p = p * 10;
+		temp = temp / 10;
+	}
+	while (p > 0)
+	{
+		num = x / p;
+		_putchar((int)('0' + num));
+		counter++;
+		x = x % p;
+		p = p / 10;
 	}
 	return (counter);
 }
