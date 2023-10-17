@@ -12,6 +12,10 @@ int print(const char *f, ...)
 	count = 0;
 	while (*f != '\0')
 	{
+		if (f == NULL)
+		{
+			return (NULL);
+		}
 		if (*f == '%')
 		{
 			f++;
