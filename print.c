@@ -3,7 +3,13 @@
 #include<stdio.h>
 #include<unistd.h>
 
-int print(const char *f, ...)
+/*
+ * _printf - function that produces output according to a format.
+ * @format: character string
+ *
+ * Return: the number of characters printed
+
+int _printf(const char *format, ...)
 {
 	int count;
 	va_list arg;
