@@ -6,8 +6,7 @@
 int _format(char c, va_list arg);
 int _putchar(int c);
 int _putstr(char *str);
-
-/*
+/**
  * _printf - function that produces output according to a format.
  * @format: character string
  *
@@ -40,17 +39,18 @@ int _printf(const char *format, ...)
 	return (counter);
 }
 
-/*
+/**
  * _format - checks the format specifier
  * @c: character to be checked
  * @arg: data variables
  *
- * Return: integer
+ * Return: in nteger
  */
 
 int _format(char c, va_list arg)
 {
 	int counter;
+
 	counter = 0;
 
 	if (c == 'c')
@@ -74,11 +74,11 @@ int _format(char c, va_list arg)
 	return (counter);
 }
 
-/*
+/**
  * _putchar - prints a character to stdout
  * @c: character to be printed
  *
- * return: an integer
+ * Return: an integer
  */
 
 int _putchar(int c)
@@ -86,11 +86,11 @@ int _putchar(int c)
 	return (write(1, &c, 1));
 }
 
-/*
+/**
  * _putstr - prints a string to stdout
  * @str: string to be printed
  *
- * return: an integer
+ * Return: an integer
  */
 
 int _putstr(char *str)
