@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, &format, 1);
+			write(1, format, 1);
 		}
 		format++;
 		counter++;
@@ -55,13 +55,13 @@ int _format(char c, va_list arg)
 
 	if (c == 'c')
 	{
-		counter += _putchar(va_arg(arg, int));
+	counter += _putchar(va_arg(arg, int));
 	}
-	if (c == 's')
+	else if (c == 's')
 	{
 	counter += _putstr(va_arg(arg, char *));
 	}
-	if (c == '%')
+	else if (c == '%')
 	{
 	write(1, &c, 1);
 	counter++;
@@ -96,8 +96,9 @@ int _putchar(int c)
 int _putstr(char *str)
 {
 	int counter;
+
 	counter = 0;
-	while (*str)
+	while (*str != '\0')
 	{
 		_putchar((int)*str);
 		counter++;
