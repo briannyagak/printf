@@ -15,25 +15,22 @@ int _printf(const char *format, ...)
 	int count;
 	va_list arg;
 
-	va_start(arg, f);
+	va_start(arg, format);
 	count = 0;
-	while (*f != '\0')
+	while (*format != '\0')
 	{
-		if (f == NULL)
+	
+		if (*format == '%')
 		{
-			return (NULL);
-		}
-		if (*f == '%')
-		{
-			f++;
-			if (*f == 'c')
+			format++;
+			if (*format == 'c')
 			{
 				int y = va_arg(arg, int);
 
 				write(1, &y, 1);
 				count++;
 			}
-			if (*f == 's')
+			if (*format == 's')
 			{
 				char *str = va_arg(arg, char *);
 
@@ -47,10 +44,10 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, f, 1);
+			write(1, format, 1);
 			count++;
 		}
-		f++;
+		format++;
 		va_end(arg);
 	}
 	return (count);
