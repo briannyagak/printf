@@ -4,7 +4,7 @@
 #include<unistd.h>
 
 int _format(char c, va_list arg);
-int _putchar(int c);
+int _putchar(char c);
 int _putstr(char *str);
 int _putdigit(int x);
 /**
@@ -34,7 +34,6 @@ int _printf(const char *format, ...)
 			write(1, format, 1);
 		}
 		format++;
-		counter++;
 	}
 	va_end(arg);
 	return (counter);
@@ -84,7 +83,7 @@ int _format(char c, va_list arg)
  * Return: an integer
  */
 
-int _putchar(int c)
+int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
@@ -98,13 +97,13 @@ int _putchar(int c)
 
 int _putstr(char *str)
 {
-	int counter;
+		int counter;
 
 	counter = 0;
 	while (*str != '\0')
 	{
-		_putchar((int)*str);
 		counter++;
+		_putchar(*str);
 		str++;
 	}
 	return (counter);
@@ -138,7 +137,7 @@ int _putdigit(int x)
 	while (p > 0)
 	{
 		num = x / p;
-		_putchar((int)('0' + num));
+		_putchar(('0' + num));
 		counter++;
 		x = x % p;
 		p = p / 10;
