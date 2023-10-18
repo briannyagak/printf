@@ -99,7 +99,17 @@ int _putchar(char c)
 
 int _putstr(char *str)
 {
-		int counter;
+	int counter;
+
+	if (str == NULL)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('u');
+		_putchar('l');
+		_putchar('l');
+		_putchar(')');
+	}
 
 	counter = 0;
 	while (*str != '\0')
