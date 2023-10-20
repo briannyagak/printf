@@ -35,12 +35,11 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-		       	write(1, format, 1);
+			write(1, format, 1);
 			counter++;
 		}
 		format++;
-		
-	}
+		}
 	va_end(arg);
 	return (counter);
 }
@@ -90,7 +89,6 @@ int _format(char c, va_list arg)
 	{
 	counter += write(1, &c, 1);
 	}
-	
 	return (counter);
 }
 
