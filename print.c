@@ -20,6 +20,10 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 	va_start(arg, format);
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	counter = 0;
 
 	while (*format != '\0')
@@ -71,10 +75,22 @@ int _format(char c, va_list arg)
 	{
 	counter += _putdigit(va_arg(arg, int));
 	}
+	else if (c == '!' || 'K')
+	{
+		_putchar('%');
+		counter++;
+		write(1, &c, 1);
+		counter++;
+	}
+	else if (c == '\0')
+	{
+		return (-1);
+	}
 	else
 	{
-	counter +=write(1, &c, 1);
+	counter += write(1, &c, 1);
 	}
+	
 	return (counter);
 }
 
@@ -103,12 +119,7 @@ int _putstr(char *str)
 
 	if (str == NULL)
 	{
-		_putchar('(');
-		_putchar('n');
-		_putchar('u');
-		_putchar('l');
-		_putchar('l');
-		_putchar(')');
+		str = "(null)";
 	}
 
 	counter = 0;
