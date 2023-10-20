@@ -6,7 +6,7 @@
 int _format(char c, va_list arg);
 int _putchar(char c);
 int _putstr(char *str);
-int _putdigit(int x);
+int _putdigit(long x);
 /**
  * _printf - function that produces output according to a format.
  * @format: character string
@@ -49,7 +49,7 @@ int _printf(const char *format, ...)
  * @c: character to be checked
  * @arg: data variables
  *
- * Return: in nteger
+ * Return: integer
  */
 
 int _format(char c, va_list arg)
@@ -68,26 +68,24 @@ int _format(char c, va_list arg)
 	}
 	else if (c == '%')
 	{
-		write(1, "%", 1);
+		write(1, "%%", 1);
 	}
-	else if (c == 'd' || 'i')
+	else if (c == 'd')
 	{
-	counter += _putdigit(va_arg(arg, int));
+	counter += _putdigit((long)va_arg(arg, int));
 	}
-	else if (c == '!' || 'K')
+	else if (c == 'i')
 	{
-		_putchar('%');
-		counter++;
-		write(1, &c, 1);
-		counter++;
-	}
-	else if (c == '\0')
-	{
-		return (-1);
+	counter += _putdigit((long)va_arg(arg, int));
 	}
 	else
 	{
-	counter += write(1, &c, 1);
+		char x = c;
+
+		write(1, "%%", 1);
+		counter++;
+		write(1, &x, 1);
+		counter++;
 	}
 	return (counter);
 }
@@ -136,16 +134,16 @@ int _putstr(char *str)
  *
  * Return: an integer
  */
-int _putdigit(int x)
+int _putdigit(long x)
 {
 	int counter = 0;
-	int p = 1;
-	int temp;
-	int num;
+	long p = 1;
+	long temp;
+	long num;
 
 	if (x < 0)
 	{
-		write(1, "-", 1);
+		_putchar('-');
 		x = -x;
 		counter++;
 	}
